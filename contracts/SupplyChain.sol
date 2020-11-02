@@ -55,7 +55,7 @@ contract SupplyChain {
     Each event should accept one argument, the sku */
     event LogForSale(uint sku);
     event LogSold(uint sku);
-    event LogShipping(uint sku);
+    event LogShipped(uint sku);
     event LogReceived(uint sku);
 
 /* Create a modifer that checks if the msg.sender is the owner of the contract */
@@ -131,7 +131,7 @@ contract SupplyChain {
   is the seller. Change the state of the item to shipped. Remember to call the event associated with this function!*/
   function shipItem(uint sku) public sold(sku) verifyCaller(items[sku].seller) {
       items[sku].state = 2;
-      emit LogShipping(sku);
+      emit LogShipped(sku);
   }
 
   /* Add 2 modifiers to check if the item is shipped already, and that the person calling this function
